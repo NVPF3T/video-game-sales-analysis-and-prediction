@@ -1,22 +1,34 @@
 # 🎮 Video Game Sales Analysis and Prediction using Machine Learning
 
-## 🚧 Project Status
+## ✅ Project Status
 
-**Project In Progress**
-
-Current Progress:
+**Core pipeline complete. Advanced models are the next step.**
 
 - ✅ Data Understanding
 - ✅ Data Cleaning
-- ✅ Univariate Exploratory Data Analysis (EDA)
-- ✅ Bivariate Exploratory Data Analysis (EDA)
-- ✅ Advanced Exploratory Data Analysis (EDA)
-- 🔄 Feature Engineering (In Progress)
-- ⏳ Data Preprocessing
-- ⏳ Regression Model
-- ⏳ Classification Model
-- ⏳ Model Comparison
-- ⏳ Final Prediction System
+- ✅ Univariate / Bivariate / Advanced EDA
+- ✅ Feature Engineering (`Sales_Category` target)
+- ✅ Baseline models: Linear Regression, Logistic Regression, KNN
+- ✅ Decision Tree (regression + classification, tuned with GridSearchCV)
+- ✅ Final Prediction System (`predict.py` + saved model in `Models/`)
+- ⏳ Random Forest / XGBoost, time-based split, Streamlit app
+
+### Results (held-out 20% test set)
+
+| Model | Accuracy | Macro F1 |
+|---|---|---|
+| Majority-class baseline | 0.488 | 0.219 |
+| Logistic Regression | 0.571 | 0.460 |
+| KNN (k=15) | 0.571 | 0.496 |
+| Decision Tree (tuned) | 0.564 | 0.484 |
+
+Sales regression (log scale R²): Linear Regression 0.22, Decision Tree 0.18. Features are metadata only (platform, genre, year, publisher), which limits accuracy.
+
+### Predict a new game
+
+```
+python predict.py --platform PS2 --genre Action --publisher "Electronic Arts" --year 2005
+```
 
 ---
 
@@ -65,6 +77,7 @@ The dataset contains historical video game sales information including:
 - Matplotlib
 - Seaborn
 - Scikit-Learn
+- Joblib
 - Jupyter Notebook
 
 ---
@@ -88,12 +101,10 @@ video-game-sales-analysis-and-prediction/
 │   ├── 04_Bivariate_EDA.ipynb
 │   ├── 05_Advanced_EDA.ipynb
 │   ├── 06_Feature_Engineering.ipynb
-│   ├── 07_Data_Preprocessing.ipynb
-│   ├── 08_Regression_Model.ipynb
-│   ├── 09_Classification_Model.ipynb
-│   ├── 10_Model_Comparison.ipynb
-│   ├── 11_Final_Prediction_System.ipynb
-│   └── 12_Project_Summary.ipynb
+│   ├── 07_Prepare Data for ML and Implementation.ipynb
+│   ├── 08_Decision_Tree_Models.ipynb
+│   └── 09_Final_Prediction_System.ipynb
+├── predict.py
 │
 ├── README.md
 ├── requirements.txt
@@ -130,32 +141,27 @@ Prediction System
 
 Completed
 
-- Data Understanding
-- Data Cleaning
-- Univariate EDA
-- Bivariate EDA
-- Advanced EDA
-
-Currently Working On
-
-- Feature Engineering
+- Data Understanding, Data Cleaning
+- Univariate, Bivariate and Advanced EDA
+- Feature Engineering (Sales_Category: Flop / Average / Hit)
+- Baseline models (Linear Regression, Logistic Regression, KNN)
+- Decision Tree regression and classification (tuned with GridSearchCV)
+- Final Prediction System (`predict.py` and saved model in `Models/`)
 
 Upcoming
 
-- Data Preprocessing
-- Machine Learning Models
-- Prediction System
+- Random Forest / XGBoost and a full model comparison
+- Time-based train/test split and cross-validated evaluation
+- Interactive app (Streamlit)
 
 ---
 
 # 🚀 Future Improvements
 
-- Train multiple machine learning models
-- Compare regression and classification models
-- Save trained models
-- Build a prediction system
-- Create an interactive application
-- Improve model performance using feature engineering
+- Add tree ensembles (Random Forest, XGBoost) and compare with the baselines
+- Add features such as publisher track record (computed on training data only)
+- Use sklearn Pipelines so preprocessing and model are saved together
+- Build an interactive Streamlit app on top of `predict.py`
 
 ---
 
